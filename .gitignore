@@ -6,6 +6,7 @@
 # house precise coordinates and raw interview text
 private/
 docs/
+data/pjn-extracts
 
 # build output and deps
 dist/
