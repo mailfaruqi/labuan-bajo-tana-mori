@@ -1,7 +1,7 @@
 {
   // Static site deployed as a Cloudflare Worker with static assets.
   // "name" MUST match the project name in the Cloudflare dashboard.
-  "name": "labuan-bajo-beyond-the-road",
+  "name": "labuan-bajo-golo-mori",
   "compatibility_date": "2025-01-01",
   "assets": {
     "directory": "./dist",
