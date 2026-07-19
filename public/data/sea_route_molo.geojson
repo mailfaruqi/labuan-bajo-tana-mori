@@ -1,0 +1,21 @@
+{
+"type":"FeatureCollection",
+"features":[
+{"type":"Feature",
+ "properties":{"name":"Sea route via Selat Molo","source":"survey team","note":"Dermaga Lenteng to Pelabuhan Labuan Bajo, via Warloka"},
+ "geometry":{"type":"LineString","coordinates":[
+  [119.81153844514269,-8.667965333916362],
+  [119.803581,-8.6547626],
+  [119.806725,-8.6270702],
+  [119.80805785215547,-8.602707159054123],
+  [119.79707111080623,-8.596396783366634],
+  [119.7910049,-8.5858105],
+  [119.8104407,-8.5473727],
+  [119.87786144633033,-8.493822879388567]]}},
+{"type":"Feature","properties":{"name":"Dermaga Lenteng","kind":"jetty","note":"departure point, Golo Mori and Soknar"},
+ "geometry":{"type":"Point","coordinates":[119.81153844514269,-8.667965333916362]}},
+{"type":"Feature","properties":{"name":"Dermaga Warloka","kind":"jetty"},
+ "geometry":{"type":"Point","coordinates":[119.80805785215547,-8.602707159054123]}},
+{"type":"Feature","properties":{"name":"Pelabuhan Labuan Bajo","kind":"port"},
+ "geometry":{"type":"Point","coordinates":[119.87786144633033,-8.493822879388567]}}
+]}

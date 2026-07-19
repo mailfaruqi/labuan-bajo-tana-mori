@@ -1,0 +1,15 @@
+# secrets and local config
+.env
+.env.local
+
+# sensitive research data, never publish
+# house precise coordinates and raw interview text
+private/
+docs/
+
+# build output and deps
+dist/
+node_modules/
+
+# os
+.DS_Store
