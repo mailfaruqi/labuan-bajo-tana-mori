@@ -57,6 +57,7 @@ const BEATS={
  'golo1' :{ch:'The villages',center:GOLO_MORI,zoom:15.3,pitch:66,bearing:-12,dur:3400},
  'golo2' :{ch:'The villages',center:GOLO_MORI,zoom:15.7,pitch:64,bearing:-12,dur:2400,
            shots:[['photos/golomori-pipes.jpeg','Pipes across the asphalt. Courtesy of the author.']]},
+ 'after' :{ch:'Findings',center:[119.838,-8.615],zoom:10.7,pitch:52,bearing:-14,dur:3400},
  'matrix':{ch:'Findings',center:[119.845,-8.60],zoom:9.8,pitch:28,bearing:0,dur:3400,
            desat:true,stage:'matrix'},
  'close' :{ch:'Findings',center:[119.845,-8.62],zoom:10.2,pitch:62,bearing:-10,dur:3400}
@@ -75,6 +76,11 @@ CHAPTERS.forEach(([ch,beat])=>{const b=document.createElement('button');b.datase
 const IQ=['Who chose the route through the villages?','Was there compensation?',
   'Was consultation adequate?','Who is the road for?'];
 const IROWS=[
+ ['Ministry, regional infrastructure',[
+  ['claim','Presidential discretion','The road sits on land under local jurisdiction. It was built by central government under presidential discretion, in order to support the 2023 summit.'],
+  ['silent','Not addressed','The office did not speak to compensation.'],
+  ['counter','No rule requires it','Public participation has not yet been regulated in the infrastructure planning process. There was no legal standard for the consultation to fall short of.'],
+  ['claim','The summit','Central government intervention in a local road, directed at the 2023 summit.']]],
  ['National roads agency',[
   ['claim','Residents asked for it','The trace was first drawn outside the settlements precisely to avoid taking houses. It was moved through them at the residents own request, for direct access to the road.'],
   ['claim','None was needed','No cash payment for land. The approach is described as social and cultural: customary ceremony, help moving houses, collective labour.'],
@@ -92,13 +98,13 @@ const IROWS=[
   ['claim','Tourism and events growth','The 23 metre right of way is provisioned for tourism growth and a planned conference and events centre over the next ten to fifteen years.']]],
  ['Land agency',[
   ['deflect','Not recorded by us','This office registers land, not route selection.'],
-  ['counter','Construction ran ahead of the paperwork','Physical work began before land administration was complete, leaving boundary legality unresolved. Certificates have not been reconciled with what the road actually took, so residents cannot use the remainder as collateral.'],
+  ['counter','Construction ran ahead of the paperwork','Physical work began before land administration was complete, leaving boundary legality unresolved. Certificates have not been reconciled with what the road actually took, so residents cannot use the remainder as collateral. Because the sequence went wrong, paying compensation now would itself breach procedure. The window did not close, it never opened.'],
   ['deflect','Not our remit','Consultation was not run by this office.'],
-  ['counter','Outside investors are buying the frontage','Most land along the corridor has transferred from local families to investors from larger cities, at prices the office calls speculative rather than fundamental.']]],
+  ['counter','Outside investors are buying the frontage','Most land along the corridor has transferred from local families to investors from larger cities, at prices the office calls speculative rather than fundamental. Buying began before construction started, which means the alignment was known outside government before it was known in the villages.']]],
  ['Tourism zone operator',[
   ['deflect','Already fixed when we arrived','The route plan existed before the operator was involved, so it took no part in the public consultation over land.'],
   ['deflect','Not our process','Land release was handled by government, not by the operator.'],
-  ['deflect','We did not run it','The operator was not the consulting party.'],
+  ['counter','We did not run it, and we are not heard either','The operator was not the consulting party. It later warned the district that a steep rise in the assessed selling value of land was blocking further development of the zone. The district set that aside in favour of the tax revenue. Even the beneficiary gets told rather than asked.'],
   ['claim','Without it the zone is zero','The road is treated as binary. Without it the special economic zone has no value at all; with it, development becomes possible.']]],
  ['Community advocate',[
   ['counter','Pushed through, consent manufactured','An attendance list from a village meeting that had not discussed the road was later used as evidence of agreement. Residents faced a binary choice under pressure.'],
@@ -111,58 +117,60 @@ const IROWS=[
   t.innerHTML='<tr><th class="rowh"></th>'+IQ.map(q=>'<th>'+q+'</th>').join('')+'</tr>'+
     IROWS.map(([who,cells],r)=>'<tr><th class="rowh">'+who+'</th>'+cells.map((c,i)=>
       '<td><button class="cell k-'+c[0]+'" data-r="'+r+'" data-i="'+i+'">'+c[1]+'</button></td>').join('')+'</tr>').join('');
-  const KIND={claim:'the office asserts',deflect:'not our responsibility',counter:'contradicts the official account'};
+  const KIND={claim:'the office asserts',deflect:'not our responsibility',
+    counter:'contradicts the official account',silent:'not addressed by this office'};
   const sel=b=>{t.querySelectorAll('.cell').forEach(c=>c.classList.remove('sel'));b.classList.add('sel');
     const r=+b.dataset.r,i=+b.dataset.i,c=IROWS[r][1][i];
     d.className='detail';
     d.innerHTML='<div><b>'+IROWS[r][0]+' · '+IQ[i]+'</b><p>'+c[2]+'</p>'+
       '<p class="why">Reading: '+KIND[c[0]]+'.</p></div>';};
   t.querySelectorAll('.cell').forEach(b=>b.onclick=()=>sel(b));
-  sel(t.querySelector('.cell[data-r="4"][data-i="1"]'));
+  sel(t.querySelector('.cell[data-r="5"][data-i="1"]'));
 })();
 
 /* ---------- findings matrix ---------- */
 const VILL=['Nanganae','Cumbi','Kenari','Soknar','Golo Mori'];
 const DIMS=['Distributive','Procedural','Deliberative','Restorative','Epistemic'];
-const V={good:'largely met',mixed:'partly met',poor:'not met'};
+const V={good:'largely met',mixed:'partly met',poor:'not met',none:'no evidence recorded'};
 const MX={
  'Nanganae':[
-  ['mixed','Access and livestock transport improved, but the raised carriageway floods the fields and the houses below it.','Gains are real, yet the burden falls on the households nearest the road.','photos/nanganae-house.jpg'],
-  ['mixed','Concerns were passed through village representatives and recorded, but nothing followed.','Process existed on paper without any outcome.',''],
-  ['mixed','Residents raised drainage and irrigation problems, with no influence on the outcome.','Voice without influence is not deliberation.',''],
-  ['poor','No repair. Residents built their own embankments to hold the water back.','Harm was identified, acknowledged, and left to the affected to fix.',''],
+  ['mixed','Produce that took two or three days to reach Labuan Bajo now takes thirty to sixty minutes. The raised carriageway floods the houses below it and the paddy beside it, and altered boundaries have left residents unable to use their remaining land as security for a loan.','Gains are real, yet the burden falls on the households nearest the road.','photos/nanganae-house.jpg'],
+  ['mixed','The reason for the road and the absence of compensation were both set out at a forum covering the affected villages. Concerns raised there about drainage and land certificates have had no follow up.','Informed at the start, then left without an answer.',''],
+  ['poor','Residents raised drainage, irrigation and certificate problems. Nothing came of any of it.','Voice without influence is not deliberation.',''],
+  ['mixed','Households were paid about Rp 5 million to move an elevated house, or 25 to 70 per cent of a permanent home’s value to rebuild, on the reasoning that Nanganae needed the new road less because it already had one. The flooding was never repaired, residents built their own embankments, and the promised land reconciliation has not happened.','The only village paid for its land, and paid because it had the least leverage. The harm that followed was still left where it fell.',''],
   ['poor','Farmers warned that road drainage must not join the irrigation. It was joined anyway.','Expert local knowledge was available before construction and was not treated as knowledge.','photos/nanganae-irrigation.jpg']],
  'Cumbi':[
-  ['poor','Some work at the zone, against sixteen houses cleared and one lot cut from 100 m to 40 m.','The heaviest burden in the corridor fell here, with the thinnest return.'],
-  ['poor','An attendance list from an unrelated meeting was presented as consent, with armed personnel present at the church.','Consent was recorded rather than obtained.',''],
-  ['mixed','Residents genuinely changed the route, then lost all control of the terms.','Influence was real at the start and inverted at execution.',''],
-  ['poor','No land compensation. A housing grant of about Rp 20 million is disaster relief, not payment for land.','The remedy offered does not match the category of loss.',''],
-  ['mixed','A sacred tree and grave sites were respected. The wider claim to ancestral land was not.','Ritual knowledge honoured, territorial claim overridden.','']],
+  ['poor','Work at the zone became available. Against that, houses came down under a three day order with nothing paid for the land, and residents still pay property tax on ground the road took, because it was never removed from the assessment.','The heaviest burden in the corridor fell here, with the thinnest return.',''],
+  ['mixed','The district head told residents directly that routing through the village meant no compensation. What was not communicated was the gap between the land described at the meetings and the land actually taken.','The headline consequence was stated. The detail that determined the loss was not.',''],
+  ['mixed','Residents changed the route, through meetings and then through demonstrations. At the outset the plan went only to village leaders, and agreement was finally taken with armed police present, on a choice between the road through the village with no payment or no road at all.','Influence was real at the start and inverted at execution.',''],
+  ['poor','No payment for land. Housing rehabilitation was offered and some residents refused it as too little. Electricity and clean water were promised in support of the land release and have not been built, and land reconciliation has not been carried out.','Residents compare this with other projects, including the airport, where money was paid.',''],
+  ['none','The survey recorded no epistemic finding here.','No evidence was gathered either way, and an empty cell is more honest than an inferred one.','']],
  'Kenari':[
-  ['good','Travel and trade transformed. A roadside workshop moved to the frontage and takings rose sharply.','This is the clearest case of benefit reaching residents directly.',''],
-  ['poor','No inclusive socialisation. Most residents learned of the road as rumour.','Absence of process is not cured by a good outcome.',''],
-  ['poor','The one village meeting was notification, not discussion of terms or compensation.','One way information does not constitute deliberation.',''],
-  ['poor','Land cut by five to fifteen metres with no compensation, accepted out of exhaustion.','Acceptance after decades of isolation is not the same as agreement.',''],
-  ['mixed','Concern over land status was raised and settled. Customary knowledge was not a live issue here.','Neither respected nor violated in any significant way.','']],
+  ['good','Travel and trade transformed. A roadside workshop moved to the frontage and takings rose sharply, and the road is how people now reach health care and daily necessities.','This is the clearest case of benefit reaching residents directly.',''],
+  ['mixed','A public hearing was held and residents were told plainly that their land was needed and that nothing would be paid for it.','The consequence was communicated before the fact, which is more than several villages received.',''],
+  ['poor','The hearing did not invite all residents of the affected villages, reaching only those whose land was already marked.','Consultation that excludes part of the affected population is not inclusive deliberation.',''],
+  ['poor','Land was taken with no compensation, accepted because the village needed the road after decades of mud. Land reconciliation promised by the government has not been carried out.','Acceptance after decades of isolation is not the same as agreement, and the one remedy offered has not arrived.',''],
+  ['none','The survey recorded no epistemic finding here.','No evidence was gathered either way, and an empty cell is more honest than an inferred one.','']],
  'Soknar':[
-  ['mixed','Sea isolation ended and residents run their own pickup service. Homes flood every wet season.','The village gained mobility and absorbed a permanent drainage failure.',''],
-  ['poor','A second measurement shifted the route. Houses previously marked safe were cleared.','A changed decision was never re consulted with those it newly affected.',''],
-  ['poor','Objections were made individually. One protester was driven off by neighbours who wanted the road.','Dissent was isolated rather than deliberated.',''],
-  ['poor','Money was handed out privately through the village head, source undisclosed and not proportionate.','Undisclosed and unequal remedy is not restoration.',''],
-  ['poor','An ancestral well was buried under the asphalt. Promised water tanks were inadequate, so residents drilled their own bore.','A working village water system was destroyed and replaced by the villagers themselves. No photographic record was made.','']],
+  ['mixed','Two and a half hours by boat became thirty minutes by road, new beaches began drawing visitors, and residents run their own communal transport. Dozens of homes now flood because the drainage does not work.','The village gained mobility and absorbed a permanent drainage failure.',''],
+  ['poor','The route was changed and houses previously marked safe were cleared, without the people newly affected being told. Some residents were never informed of the hearing at all, and the decision to build the carriageway above the houses was never communicated.','Three separate failures to inform, one of which is now flooding people’s homes.',''],
+  ['poor','Objections were made individually. One protester was outvoted by neighbours who wanted the road.','Dissent was isolated rather than deliberated.',''],
+  ['poor','Relocation money was paid but residents could not establish the amount, the basis or the source. Flooding complaints went to the village office and produced nothing. Land reconciliation has not been carried out.','Undisclosed and unequal remedy is not restoration.',''],
+  ['poor','The well that was the village’s main source of clean water was buried under the road. The water tank supplied in its place was not enough, so residents built a new well themselves.','A working village water system was destroyed and replaced by the villagers themselves. No photographic record was made.','']],
  'Golo Mori':[
-  ['mixed','The road serves the zone it was built for. About four of nine neighbourhoods received asphalt.','The destination was funded, the settlement around it only partly. No photographic record was made.',''],
-  ['poor','Information was given at the village office. There was no open public forum.','Notification again in place of consultation.',''],
-  ['poor','Requests to continue the asphalt beyond the zone entrance have not been answered.','Requests raised after construction have had no route to a decision.',''],
-  ['poor','Self laid water pipes are crushed by traffic and repaired by residents at their own cost.','A harm created by the works is carried indefinitely by those harmed.','photos/golomori-pipes.jpeg'],
-  ['good','Customary ritual was required before construction, and seventy per cent green zoning respects the sacred hill.','The strongest recognition of customary knowledge anywhere on the corridor.','']]
+  ['mixed','A village reachable only by sea was opened, and the zone employs residents in security and cleaning with a hospitality training programme run through local schools. Land along the corridor has passed to outside investors who hold the long term gain, and residents now pay to enter Puncak Golo Mori beach.','The destination was funded and the village works in it, at the bottom of its wage scale, on ground it increasingly does not own.',''],
+  ['none','The survey recorded no procedural finding here.','No evidence was gathered either way, and an empty cell is more honest than an inferred one.',''],
+  ['poor','A consultation was held, but the forum existed to relay the plan rather than to discuss it.','One way communication does not constitute deliberation.',''],
+  ['poor','Self laid water pipes are crushed by traffic and repaired by residents at their own cost, roughly once a month, with no government action.','A harm created by the works is carried indefinitely by those harmed.','photos/golomori-pipes.jpeg'],
+  ['poor','The village had built and managed its own water network. The road was laid over it with no duct to carry it underneath.','An existing village system was known about and was not treated as something the design had to accommodate.','']]
 };
 (function(){
   const t=document.getElementById('fmx'),d=document.getElementById('fdetail');
   t.innerHTML='<tr><th class="rowh"></th>'+DIMS.map(x=>'<th>'+x+'</th>').join('')+'</tr>'+
     VILL.map(v=>'<tr><th class="rowh">'+v+'</th>'+MX[v].map((c,i)=>
       '<td><button class="cell s-'+c[0]+'" data-v="'+v+'" data-i="'+i+'"></button></td>').join('')+'</tr>').join('');
-  const COL={good:'rgba(110,168,127,.3)',mixed:'rgba(217,145,63,.3)',poor:'rgba(217,99,74,.32)'};
+  const COL={good:'rgba(110,168,127,.3)',mixed:'rgba(217,145,63,.3)',poor:'rgba(217,99,74,.32)',
+    none:'rgba(255,255,255,.09)'};
   const sel=b=>{t.querySelectorAll('.cell').forEach(c=>c.classList.remove('sel'));b.classList.add('sel');
     const v=b.dataset.v,i=+b.dataset.i,c=MX[v][i];
     d.className='detail'+(c[3]?' haspic':'');
